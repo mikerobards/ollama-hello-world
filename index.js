@@ -7,10 +7,10 @@ const port = 3000;
 app.get('/', async (req, res) => {
     const question = req.query.question;
     if (!question) {
-        res.status(200).send("Ask something via the `?question=` parameter");  
+        res.status(200).send("Ask something via the `?question=` parameter");
     } else {
         const response = await ollama.chat({
-            model: 'mistral',
+            model: 'llama3.1',
             messages: [{ role: 'user', content: question }],
         });
         res.status(200).send(response.message.content);
@@ -18,6 +18,6 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
 
